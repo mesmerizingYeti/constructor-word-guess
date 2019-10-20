@@ -1,7 +1,7 @@
 function Letter (character) {
   this.character = character
   this.guessed = false
-  this.returnCharacter = function () {
+  this.displayCharacter = function () {
     return this.guessed ? this.character : '_'
   }
   this.checkCharacter = function (char) {
