@@ -3,7 +3,6 @@ const buzzwords = require(`./buzzwords`)
 const inquirer = require(`inquirer`)
 const chalk = require(`chalk`)
 
-let cheat
 let phrase = []
 let guesses
 
@@ -16,7 +15,6 @@ const validateInput = async (input) => {
 
 const displayPhrase = _ => console.log(`
   ${phrase.map(word => word.display()).join(' ')}
-  ${cheat}
   `)
 
 const guessLetter = _ => {
@@ -37,9 +35,11 @@ const guessLetter = _ => {
         gameOver = phrase.every(word => word.guessed)
         message = chalk.green(`\nYou got it right! Next word...`)
       } else {
-        console.log(chalk.red(`\nINCORRECT!!`))
         guesses--
         gameOver = guesses === 0
+        if (guesses > 0) {
+          console.log(`${chalk.red('\nINCORRECT!!')}\n\n${guesses} guess${guesses === 1 ? '' : 'es'} remaining!!`)
+        }
         message = chalk.red(`\nYou lost :( Next word...`)
       }
 
@@ -56,8 +56,7 @@ const guessLetter = _ => {
 
 const startGame = _ => {
   guesses = 10
-  cheat = buzzwords.buzzwords()
-  phrase = cheat.split(' ').map(word => new Word(word))
+  phrase = buzzwords.buzzwords().split(' ').map(word => new Word(word))
   displayPhrase()
   guessLetter()
 }
