@@ -1,12 +1,12 @@
 function Letter (character) {
   this.character = character
-  this.guessed = false
-  this.displayCharacter = function () {
+  this.guessed = character === '-'
+  this.display = function () {
     return this.guessed ? this.character : '_'
   }
-  this.checkCharacter = function (char) {
+  this.check = function (char) {
     this.guessed = char === this.character
   }
 }
 
-modules.exports = Letter
+module.exports = Letter
