@@ -30,6 +30,8 @@ const guessLetter = _ => {
       } else {
         console.log(chalk.red(`\nINCORRECT!!`))
       }
+      displayPhrase()
+      guessLetter()
       // if (phrase.every(word => word.guessed)) {
       //   console.log(`You got it right! Next Word...`)
       //   startGame()
@@ -38,6 +40,7 @@ const guessLetter = _ => {
       //   guessLetter()
       // }
     })
+    .catch(e => console.log(e))
 }
 
 const startGame = _ => {

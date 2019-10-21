@@ -4,8 +4,8 @@ function Letter (character) {
   this.display = function () {
     return this.guessed ? this.character : '_'
   }
-  this.check = function (char) {
-    this.guessed = char === this.character
+  this.guess = function (char) {
+    return !this.guessed && (this.guessed = char === this.character)
   }
 }
 
