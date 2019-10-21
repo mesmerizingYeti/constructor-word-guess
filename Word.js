@@ -7,7 +7,8 @@ function Word (str) {
     return this.letters.map(letter => letter.display()).join('')
   }
   this.guessCharacter = function (char) {
-    const result = this.letters.some(letter => letter.guess(char))
+    let result = false
+    this.letters.forEach(letter => result = (letter.guess(char) || result) ? true : false)
     this.guessed = this.letters.every(letter => letter.guessed)
     return result
   }
